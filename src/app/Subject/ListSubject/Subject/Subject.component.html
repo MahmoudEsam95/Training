@@ -1,0 +1,73 @@
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <div class="card mt-5">
+        <div class="card-header text-center">
+          <h5>Add Subject</h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="Mygroup" id="try" class="needs-validation">
+            <div class="form-row">
+              <div class="form-group ">
+                <label for="id">ID:</label>
+                <input type="number" class="form-control" formControlName="id" id="id" name="id" placeholder="ID">
+                <div class="invalid-feedback">Please provide a valid ID.</div>
+              </div>
+
+              <div class="form-group ">
+                <label for="Name">Name:</label>
+                <input type="text" class="form-control" formControlName="name" id="name" name="name" placeholder="Name">
+                <div class="invalid-feedback">Please provide a name.</div>
+              </div>
+
+
+            </div>
+            <div class="row justify-content-center mt-4">
+              <div class="col-md-6 text-center">
+                <button type="submit" class="btn btn-primary btn-lg" (click)="AddSubject(this.SubjectData)" [disabled]="!Mygroup.valid">Add</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<table class="table table-striped justify-content-center col-md-8 m-5 p-5" >
+  <thead >
+    <tr>
+      <th class="col-md-1"></th>
+
+      <th scope="col">ID</th>
+
+
+      <th scope="col">Subject</th>
+
+
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of SubjectData">
+      <th></th>
+
+      <td>{{ item.id }}</td>
+      <td>{{ item.name }}</td>
+
+
+      <td>
+        <div class="action-buttons">
+          <button type="button" class="btn btn-danger col-md" (click)="deleteSubject(item.id)">
+            <i class="fa-solid fa-trash "></i> Delete
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

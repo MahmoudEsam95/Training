@@ -1,0 +1,39 @@
+<br>
+<button type="button" id="ty" style="margin-left: 70%;" class="btn btn-success col-md-3 " [routerLink]="['/addStage'] " >Add Stage</button>
+
+<table class="table table-striped justify-content-center col-md-8 m-5 p-5" >
+  <thead >
+    <tr>
+      <th class="col-md-1"></th>
+
+      <th scope="col">ID</th>
+
+      <th scope="col">Name</th>
+
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of StageData">
+      <th></th>
+
+      <td>{{ item.id }}</td>
+      <td>{{ item.name }}</td>
+
+      <td>
+        <div class="action-buttons">
+          <button type="button" class="btn btn-danger col-md" (click)="deleteStage(item.id)">
+            <i class="fa-solid fa-trash "></i> Delete
+          </button>
+
+          <button type="button" class="btn btn-primary col-md" [routerLink]="['/editStage',item.id]">
+            <i class="fa-solid fa-pen-to-square"></i> Edit
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+

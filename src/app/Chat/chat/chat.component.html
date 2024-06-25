@@ -1,0 +1,14 @@
+<div>
+  <input [(ngModel)]="message" placeholder="Message" />
+  <button (click)="sendMessage()">Send</button>
+</div>
+
+<ul>
+  <li *ngFor="let msg of chatService.messages">{{ msg }}</li>
+</ul>
+
+
+
+
+
+

@@ -1,0 +1,92 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form id="FormClass" class="py-5 container align-items-center needs-validation" novalidate #degreeForm="ngForm">
+        <div class="form-group">
+          <label for="id">ID:</label>
+          <input type="number" class="form-control" id="id" name="id" [(ngModel)]="DegreeByIdData.id" required>
+          <div *ngIf="degreeForm.controls['id'].invalid && (degreeForm.controls['id'].dirty || degreeForm.controls['id'].touched)" class="text-danger">
+            ID is required
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="subjectId">Subject :</label>
+          <select class="form-control" id="subjectId" name="subjectId" [(ngModel)]="DegreeByIdData.subjectId" >
+            <option *ngFor="let item of SubjectData" [value]="item.id">{{ item.name }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="studentId">Student :</label>
+          <select class="form-control" id="studentId" name="studentId" [(ngModel)]="DegreeByIdData.studentId" >
+            <option *ngFor="let item of StudentData" [value]="item.id">{{ item.name }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="degree1">Degree:</label>
+          <input type="number" class="form-control" id="degree1" name="degree1"  [(ngModel)]="DegreeByIdData.degree1" required>
+          <div *ngIf="degreeForm.controls['degree1'].invalid && (degreeForm.controls['degree1'].dirty || degreeForm.controls['degree1'].touched)" class="text-danger">
+            Degree is required
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+              <div class="py-3 text-center">
+                <button type="submit" class="btn btn-primary btn-lg m-2" [disabled]="degreeForm.invalid" (click)="EditDegree(DegreeId,DegreeByIdData)" (click)="goBack()">Save</button>
+                <button type="submit" class="btn btn-danger btn-lg m-2" (click)="goBack()" >Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!--
+
+<table class="table table-striped justify-content-center col-md-8 m-5 p-5" >
+  <thead >
+    <tr>
+      <th class="col-md-1"></th>
+
+      <th scope="col">ID</th>
+
+      <th scope="col">Student</th>
+
+      <th scope="col">Subject</th>
+
+      <th scope="col">Degree</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of DegreesDataByID">
+      <th></th>
+
+      <td>{{ item.id }}</td>
+      <td>{{ item.student.name }}</td>
+      <td>{{ item.subject.name }}</td>
+      <td>{{ item.degree1 }}</td>
+
+
+      <td>
+        <div class="action-buttons">
+
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+ -->
+

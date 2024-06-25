@@ -1,0 +1,132 @@
+
+
+
+
+
+
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <form [formGroup]="Mygroub" class="py-3 needs-validation" novalidate>
+              <div class="form-group row">
+                <div class="col">
+                  <label for="ID">ID:</label>
+                  <input type="number" class="form-control" id="ID" name="ID" formControlName="ID" required>
+                </div>
+                <div class="col">
+                  <label for="SubjectID">Subject:</label>
+                  <select id="SubjectID" class="form-control" name="SubjectID" formControlName="SubjectID" required>
+                    <option *ngFor="let item of SubjectData" [value]="item.id">{{ item.name }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col">
+                  <label for="StudentID">StudentID :</label>
+                  <select id="StudentID" class="form-control" name="StudentID" formControlName="StudentID" required>
+                    <option *ngFor="let item of StudentData" [value]="item.id">{{ item.name }}</option>
+                  </select>
+                </div>
+                <div class="col">
+                  <label for="degree1">Degree</label>
+                  <input type="number" class="form-control" id="degree1" name="degree1" formControlName="degree1" required>
+                </div>
+              </div>
+              <br>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block" (click)="AddDegree(this.DegreeData)" [disabled]="!Mygroub.valid">Add</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<br>
+<div class="row">
+  <div class="col-4">
+  </div>
+  <div class="col-4">
+    <input type="number" class="form-control" [(ngModel)]="searchTerm" placeholder="Search by Student ID" />
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table class="table table-striped justify-content-center col-md-8 m-5 p-5" >
+  <thead >
+    <tr>
+      <th class="col-md-1"></th>
+
+      <th scope="col">ID</th>
+
+      <th scope="col">Student</th>
+
+      <th scope="col">Subject</th>
+
+      <th scope="col">Degree</th>
+
+
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of filteredItems">
+      <th></th>
+
+      <td>{{ item.id }}</td>
+      <td>{{ item.student.name }}</td>
+      <td>{{ item.subject.name }}</td>
+      <td>{{ item.degree1 }}</td>
+
+
+      <td>
+        <div class="action-buttons">
+          <button type="button" class="btn btn-danger col-md" (click)="deleteDegree(item.id)">
+            <i class="fa-solid fa-trash "></i> Delete
+          </button>
+
+          <button type="button" class="btn btn-primary col-md" [routerLink]="['/editDegree',item .id]">
+            <i class="fa-solid fa-pen-to-square"></i> Edit
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
