@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild,OnInit } from '@angular/core';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 import { Router } from '@angular/router';
 import { MyServiceService } from 'src/app/Service/my-service.service';
-
-
 
 @Component({
   selector: 'app-ListStudent',
@@ -10,6 +10,8 @@ import { MyServiceService } from 'src/app/Service/my-service.service';
   styleUrls: ['./ListStudent.component.css']
 })
 export class ListStudentComponent implements OnInit {
+
+  @ViewChild('content') content!: ElementRef;
 
   StudentData:any ={};
 
@@ -29,6 +31,33 @@ export class ListStudentComponent implements OnInit {
     } else {
       return this.StudentData;
     }
+  }
+
+  exportToPDF() {
+    const doc = new jsPDF();
+
+
+    html2canvas(this.content.nativeElement).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const imgWidth = 300;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+      // Add captured image to PDF
+      doc.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+      doc.save('student-details.pdf');
+    });
+  }
+
+  downloadPdf(id: number): void {
+    this.myService.getStudentPdf(id).subscribe(response => {
+      const blob = new Blob([response], { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Student_${id}.pdf`;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    });
   }
 
 

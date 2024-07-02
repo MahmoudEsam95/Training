@@ -194,6 +194,11 @@ getlastIdStudent(): Observable<any> {
   return this.HttpClient.get<any>(
     `${this.baseUrl}/Student/GetLastId/`);
 }
+//// new
+getStudentPdf(id: number): Observable<Blob> {
+  return this.HttpClient.get(`${this.baseUrl}/Student/PdfbyID?id=${id}`, { responseType: 'blob' });
+}
+
 
 getAllStudents(data:any): Observable<any> {
   return this.HttpClient.get<any>(`${this.baseUrl}/Student/GetAll`,data);

@@ -14,49 +14,76 @@
   </div>
 </div>
 
+<br>
+
+
+<div>
+  <input #studentId type="number" placeholder="Enter Student ID">
+  <button (click)="downloadPdf(+studentId.value)">Download PDF</button>
+</div>
+<br>
+<button  type="button" class="btn btn-primary" (click)="exportToPDF()">Export to PDF</button>
+
+<div #content>
+
+  <table class="table table-striped justify-content-center col-md-8 m-5 p-5">
+    <thead >
+      <tr>
+        <th class="col-md-1"></th>
+
+        <th scope="col">ID</th>
+
+        <th scope="col">Name</th>
+
+        <th scope="col">Address</th>
+
+        <th scope="col">Class</th>
+
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of filteredItems">
+        <th></th>
+
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.address }}</td>
+        <td>{{ item.classes.name }}</td>
+
+
+        <td>
+          <div class="action-buttons">
+            <button type="button" class="btn btn-danger col-md" (click)="deleteStudent(item.id)">
+              <i class="fa-solid fa-trash "></i> Delete
+            </button>
+
+            <button type="button" class="btn btn-primary col-md" [routerLink]="['/editStudent',item.id]">
+              <i class="fa-solid fa-pen-to-square"></i> Edit
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 
 
-<table class="table table-striped justify-content-center col-md-8 m-5 p-5" >
-  <thead >
-    <tr>
-      <th class="col-md-1"></th>
-
-      <th scope="col">ID</th>
-
-      <th scope="col">Name</th>
-
-      <th scope="col">Address</th>
-
-      <th scope="col">Class</th>
-
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of filteredItems">
-      <th></th>
-
-      <td>{{ item.id }}</td>
-      <td>{{ item.name }}</td>
-      <td>{{ item.address }}</td>
-      <td>{{ item.classes.name }}</td>
-
-
-      <td>
-        <div class="action-buttons">
-          <button type="button" class="btn btn-danger col-md" (click)="deleteStudent(item.id)">
-            <i class="fa-solid fa-trash "></i> Delete
-          </button>
-
-          <button type="button" class="btn btn-primary col-md" [routerLink]="['/editStudent',item.id]">
-            <i class="fa-solid fa-pen-to-square"></i> Edit
-          </button>
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
 
 
 
+
+
+
+
+
+
+<!-- <tx-ds-document-viewer
+    width="100%"
+    height="800px"
+    serviceURL="https://trial.dsserver.io"
+    [documentData]="generatedDocument"
+    oauthClientID="dsserver.rpowbyLa9sXQQOD2o7yE4xaiIqMH2Zbl"
+    oauthClientSecret="baxbtbAgeWx1eV3DAvTFMkEglJP3t8Ee">
+</tx-ds-document-viewer> -->

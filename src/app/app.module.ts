@@ -41,6 +41,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { DocumentViewerModule } from '@txtextcontrol/tx-ng-ds-document-viewer';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,9 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatSnackBarModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    DocumentViewerModule,
+
   ],
   providers: [SseService,JwtService,ChatService,AuthService,PayPalService ],  ///empty
   bootstrap: [AppComponent]

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MyServiceService } from 'src/app/Service/my-service.service';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-EditStudent',
@@ -9,6 +11,7 @@ import { MyServiceService } from 'src/app/Service/my-service.service';
   styleUrls: ['./EditStudent.component.css'],
 })
 export class EditStudentComponent implements OnInit {
+
   ClassData: any = {};
   GradeData: any = {};
   StageData: any = {};
@@ -45,12 +48,9 @@ export class EditStudentComponent implements OnInit {
     SubjectID: new FormControl(null, [Validators.required]),
     StudentID: new FormControl(this.StudentId),
     degree1: new FormControl(null, [Validators.required]),
-
-
   });
 
-  // this.Mygroub.patchValue({this.StudentID=StudentId});
-
+ 
   constructor(
     private myService: MyServiceService,
     private router: Router,
